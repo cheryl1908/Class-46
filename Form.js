@@ -35,10 +35,10 @@ class Form {
                     game.updateFlag1(true);    
                 }) 
             } else if(player.index===2){
-                this.instructions.html("Welcome to Highway Runner!!!! The motive of this game is to surpass all the obstacles put forth before you by your opponent. You are the opponent you can click anywhere on the screen to obstruct your opponents progress. Happy playing!!");
+                this.instructions.html("Welcome to Highway Runner!!!! The motive of this game is to surpass all the obstacles put forth before you by your opponent. You are the opponent you can click anywhere on the screen to obstruct your opponents progress. The player has three lives and they reduce when the player collides with your vehicle. Happy playing!!");
                 this.button2.mousePressed(()=>{
                     this.instructions.hide();
-                    this.button2.hide();
+                    this.button2.hide(); 
                     this.greeting.html("Hello"+ player.name);
                     this.greeting.position(550,150);   
                     game.updateFlag2(true);
@@ -53,7 +53,9 @@ class Form {
         game.update(0);
         database.ref('/').update({
         players:null,
-        CarsAtEnd:0
+        CarsAtEnd:0,
+        flag1:false,
+        flag2:false
         })
       }); 
     }

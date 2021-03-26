@@ -50,47 +50,55 @@ class Game {
         form = new Form();
         form.display();
       }
-    
     }
   
     play(){
+
+
       form.hide();
-      console.log("inside play");
       Player.getPlayerInfo();
-      console.log(allPlayers);
+
       //player.getCarsAtEnd();
       if(allPlayers !== undefined){
-        //background(rgb(198,135,103));
-        //image(track, 0,-displayHeight*4,displayWidth, displayHeight*5);
-   
+        background(rgb(198,135,103));
+        image(track, 0,-displayHeight*4,displayWidth, displayHeight*5);
+
         plr1=createSprite(627,568);
         plr1.addImage("plr_img",player1_img);
-        if(player.index===1){
+  
+        plr2=createSprite(200,200);
+        plr2.visible=false;
+        plrs=[plr1,plr2]
+        
+        if (track.x < 1500){
+          track.x = track.width/2;
+        }
+ 
+      var index=0;
+      var x,y; 
+      for(var plr in allPlayers){
+        index=index+1;
+        x=allPlayers[plr].x
+        y=displayHeight-allPlayers[plr].y
 
-
-          if(keyDown(RIGHT_ARROW)){
-            player.x+=30;
-            player.update();
-          }
-          if(keyDown(UP_ARROW)){
-            player.y+=-30;
-            player.update();
-          }
-          if(keyDown(LEFT_ARROW)){
-            player.x+=-30;
-            player.update();
-          }
-          if(player.x>1800){
-            player.x=900;
-          }
-        }//else if(player.index===2){
-          // this.spawnVehicles();
-          }
-
-        plr1.y=player.y;
-        plr1.x=player.x;
-        drawSprites();
+        plrs[index-1].position.x=x
+        plrs[index-1].position.y=y
+        
+        if(index===player.index){
+          camera.position.x = displayWidth/2;
+          camera.position.y = plrs[index-1].position.y;
+        }
       }
+      
+    }
+
+      /*if(player.x>1800){
+        player.x=900;
+      }*/
+      
+        drawSprites();
+        
+  
     }
     /*spawnVehicles(){
       if(mouseClicked()){
@@ -98,6 +106,5 @@ class Game {
         player.y=mouseY;
       }
     }
-  }*/
-    
-  
+  }*/  
+}

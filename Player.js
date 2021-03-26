@@ -30,6 +30,7 @@ class Player {
       })
     }
     update(){
+      console.log("inside update");
       var playerIndex = "players/player" + this.index;
       database.ref(playerIndex).set({
         name:this.name,
@@ -42,7 +43,6 @@ class Player {
       var playerInfoRef = database.ref('players');
       playerInfoRef.on("value",(data)=>{
         allPlayers = data.val();
-        console.log(allPlayers);
       })
     }
   }
